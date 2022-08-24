@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import PopUp from './PopUp';
 
 function PokemonApiCall() {
     const [ids, setIds] = useState({});
     const [open, setOpen] = useState(false);
-    const[currentId, setCurrentId] = useState();
+    const [currentId, setCurrentId] = useState();
 
     let data;
 
@@ -77,12 +76,13 @@ function PokemonApiCall() {
     }
 
     const updateNext = () => {
-
+        setOpen(false);
         let newUrl = ids?.nextUrl;
         apiCallNext(newUrl);
     }
 
     const updatePrevious = () => {
+        setOpen(false);
         let newUrl = ids?.previousUrl;
         apiCallPrevious(newUrl);
     }
@@ -104,34 +104,71 @@ function PokemonApiCall() {
 
     return (
         <div>
-            {open &&  (
-             <div style={{
-                position: 'absolute',
-                textAlign:'center',
-                margin: '200px 220px',
-                border: '2px solid ',
-                borderRadius: '20px',
-                textAlign: "center",
-                height: '100%',
-                maxHeight: '400px',
-                width: '70%',
-                backgroundColor: "red",
-                zIndex: "100"
-            }}>
-                <div style={{ padding:'20px', textAlign: "right", float: "right" }} onClick={OpenPopUpClose}> <button>Close</button></div>
-                <img src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${currentId}.svg`} />
-            </div>
+            {open && (
+                <div style={{
+                    position: 'absolute',
+                    textAlign: 'center',
+                    margin: '200px 220px',
+                    border: '2px solid ',
+                    borderRadius: '20px',
+                    textAlign: "center",
+                    height: '100%',
+                    maxHeight: '400px',
+                    width: '70%',
+                    backgroundColor: "lightyellow",
+                    zIndex: "100"
+                }}>
+                    <div style={{ padding: '20px', textAlign: "right", float: "right" }} onClick={OpenPopUpClose}> <button
+                        style={{
+                            backgroundColor: "red",
+                        }}>Close</button></div>
+                    <img style={{
+                                width: '200px',
+                                height: '200px'
+                            }} src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${currentId}.svg`} />
+                </div>
             )}
             {/* {JSON.stringify(ids)} */}
             <div style={{ margin: '30px 100px', border: '2px solid red', borderRadius: '20px', textAlign: "center", float: "center" }}>
-                {ids?.pokId?.map((imgId, ind) => <div class={"flex-container"} onClick={ ()=> { OpenPopUp(imgId.id)}  } key={ind}>
-                    <img src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${imgId.id}.svg`} />
-                    <h1>Id : {imgId.id}</h1>
-                    <h1>Name : {imgId.name}</h1>
-                </div>)}
+                <div style={{
+                    display: 'grid',
+                    // gridAutoColumns: "400px 400px",
+                    gridTemplateColumns: '154px 154px 154px 154px 154px 154px 154px 154px '
+                }}>
+                    {ids?.pokId?.map((imgId, ind) =>
+                        <div style={{
+                            backgroundColor: "lightblue",
+                            border: '1px solid black',
+                            borderRadius: '20px'
+                        }} onClick={() => { OpenPopUp(imgId.id) }} key={ind}>
+                            <img style={{
+                                width: '100px',
+                                height: '100px'
+                            }}
+                                src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${imgId.id}.svg`} />
+                            <h1>Id : {imgId.id}</h1>
+                            <h1>Name : {imgId.name}</h1>
+                        </div>)}
+                </div>
+                <br></br>
+                <div><span style={{ textAlign: "left", height:'200px'}}><button style={{  
+                 border: '2px solid black',
+                  borderRadius: '20px', 
+                  color:'green',
+                  height:'50px',
+                  width:'270px'
+
+                }} onClick={updateNext}>Next </button> </span>
+                <span style={{ textAlign: "right" }}><button style={{  
+                 border: '2px solid black',
+                  borderRadius: '20px', 
+                  color:'green',
+                  width:'270px',
+                  height:'50px'
+                }} onClick={updatePrevious}>Previous </button> </span></div>
             </div>
-            <div><span style={{ textAlign: "left" }}><button onClick={updateNext}>Next </button> </span>
-                <span style={{ textAlign: "right" }}><button onClick={updatePrevious}>Previous </button> </span></div>
+            {/* <div><span style={{ textAlign: "left" }}><button onClick={updateNext}>Next </button> </span>
+                <span style={{ textAlign: "right" }}><button onClick={updatePrevious}>Previous </button> </span></div> */}
 
 
 
