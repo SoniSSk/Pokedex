@@ -147,7 +147,7 @@ function PokemonApiCall() {
                             }}
                                 src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${imgId.id}.svg`} />
                             <h1>Id : {imgId.id}</h1>
-                            <h1>Name : {imgId.name}</h1>
+                            <h5>Name : {imgId.name}</h5>
                         </div>)}
                 </div>
                 <br></br>
