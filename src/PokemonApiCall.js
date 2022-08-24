@@ -133,7 +133,7 @@ function PokemonApiCall() {
                 <div style={{
                     display: 'grid',
                     // gridAutoColumns: "400px 400px",
-                    gridTemplateColumns: '154px 154px 154px 154px 154px 154px 154px 154px '
+                    gridTemplateColumns: '154px 154px 154px 154px 154px 154px 154px 158px '
                 }}>
                     {ids?.pokId?.map((imgId, ind) =>
                         <div style={{
