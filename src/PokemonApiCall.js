@@ -118,7 +118,7 @@ function PokemonApiCall() {
                 backgroundColor: "red",
                 zIndex: "100"
             }}>
-                <div style={{ textAlign: "right", float: "right" }} onClick={OpenPopUpClose}> <FontAwesomeIcon icon="fa-solid fa-xmark" /></div>
+                <div style={{ padding:'20px', textAlign: "right", float: "right" }} onClick={OpenPopUpClose}> <button>Close</button></div>
                 <img src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${currentId}.svg`} />
             </div>
             )}
@@ -126,6 +126,8 @@ function PokemonApiCall() {
             <div style={{ margin: '30px 100px', border: '2px solid red', borderRadius: '20px', textAlign: "center", float: "center" }}>
                 {ids?.pokId?.map((imgId, ind) => <div class={"flex-container"} onClick={ ()=> { OpenPopUp(imgId.id)}  } key={ind}>
                     <img src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${imgId.id}.svg`} />
+                    <h1>Id : {imgId.id}</h1>
+                    <h1>Name : {imgId.name}</h1>
                 </div>)}
             </div>
             <div><span style={{ textAlign: "left" }}><button onClick={updateNext}>Next </button> </span>
